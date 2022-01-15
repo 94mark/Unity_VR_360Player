@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngien.Video;
+using UnityEngine.Video;
 
 //카메라의 시선을 처리하기 위한 기능
 public class GazePointerCtrl : MonoBehaviour
@@ -34,7 +34,7 @@ public class GazePointerCtrl : MonoBehaviour
         else //4.아무것도 부딪히지 않으면 기본 스케일 값으로 uiCanvas의 크기를 조절한다
         {
             uiCanvas.localScale = defaultScale * uiScaleVal;
-            uiCanvas.position = transform.position * dir;
+            uiCanvas.position = transform.position + dir;
         }
         //5.uiCanvas가 항상 카메라 오브젝트를 바라보게 한다
         uiCanvas.forward = transform.forward * -1;
