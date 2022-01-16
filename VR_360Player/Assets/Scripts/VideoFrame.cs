@@ -55,4 +55,11 @@ public class VideoFrame : MonoBehaviour
             vp.Stop();
         }
     }
+    public void OnEnable()
+    {
+        if(vp != null)
+        {
+            vp.Stop();
+        }
+    }
 }
