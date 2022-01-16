@@ -65,11 +65,17 @@ public class GazePointerCtrl : MonoBehaviour
                 //이전 프레임의 영상 정보를 업데이트한다
                 prevHitObj = curHitObj;
             }
+            //hit된 오브젝트가 VideoPlayer 컴포넌트를 갖고 있는지 확인한다
+            HitObjChecker(curHitObj, true);
         }
         else //시선이 벗어났거나 GazeObj가 아니라면 시간을 초기화
         {
+            if(prevHitObj != null)
+            {
+                HitObjChecker(prevHitObj, false);
+                prevHitObj = null;
+            }
             curGazeTime = 0;
-            prevHitObj = null; //prevHitObj 정보를 지운다
         }
         //시선이 머문 시간을 0과 촤댓값 사이로 한다
         curGazeTime = Mathf.Clamp(curGazeTime, 0, gazeChargeTime);
@@ -78,5 +84,21 @@ public class GazePointerCtrl : MonoBehaviour
 
         isHitObj = false; //모든 처리를 끝내면 isHitObj를 false로 한다
         curHitObj = null; //curHitObj 정보를 지운다
+    }
+    //히트된 오브젝트 타입별로 작동 방식을 구분한다
+    void HitObjChecker(GameObject hitObj, bool isActive)
+    {
+        //hit가 비디오 플레이어 컴포넌트를 갖고 있는지 확인한다
+        if(hitObj.GetComponent<VideoPlayer>())
+        {
+            if(isActive)
+            {
+                hitObj.GetComponent<VideoFrame>().CheckVideoFrame(true);
+            }
+            else
+            {
+                hitObj.GetComponent<VideoFrame>().CheckVideoFrame(false);
+            }
+        }
     }
 }
