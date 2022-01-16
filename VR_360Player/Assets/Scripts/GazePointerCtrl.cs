@@ -7,6 +7,7 @@ using UnityEngine.Video;
 //카메라의 시선을 처리하기 위한 기능
 public class GazePointerCtrl : MonoBehaviour
 {
+    public Video360Play vp360; //360 스피어에 추가된 영상 플레이 기능
     public Transform uiCanvas; //일정 시간 동안 시선이 머무르는 것을 보여주기 위한 UI
     public Image gazeImg; //시선이 머무는 동안 변화를 표현하기 위한 UI image 컴포넌트
 
@@ -99,6 +100,23 @@ public class GazePointerCtrl : MonoBehaviour
             {
                 hitObj.GetComponent<VideoFrame>().CheckVideoFrame(false);
             }
+        }
+        //정해진 시간이 되면 360 스피어에 특정 클립 번호를 전달해 플레이한다
+        if (gazeImg.fillAmount >= 1)
+        {
+            if (hitObj.name.Contains("Right"))
+            {
+                vp360.SwpVideoClip(true);
+            }
+            else if (hitObj.name.Contains("Left"))
+            {
+                vp360.SwpVideoClip(false);
+            }
+            else
+            {
+                vp360.SetVideoPlay(hitObj.transform.GetSiblingIndex());
+            }
+            curGazeTime = 0;
         }
     }
 }
