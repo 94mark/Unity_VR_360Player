@@ -56,4 +56,15 @@ public class Video360Play : MonoBehaviour
         vp.Play(); //바뀐 클립을 재생
         curVCidx = setVCnum; //바뀐 클립의 영상 번호를 업데이트
     }
+    public void SetVideoPlay(int num)
+    {
+        //현재 재생 중인 번호가 전달받은 번호와 다를 때만 실행
+        if (curVCidx != num)
+        {
+            vp.Stop(); //영상을 멈춘다
+            vp.clip = vcList[num]; //클립을 변경
+            curVCidx = num; //현재 재생 중인 번호를 수정
+            vp.Play(); //재생
+        }
+    }
 }

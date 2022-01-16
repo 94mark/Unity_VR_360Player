@@ -104,19 +104,7 @@ public class GazePointerCtrl : MonoBehaviour
         //정해진 시간이 되면 360 스피어에 특정 클립 번호를 전달해 플레이한다
         if (gazeImg.fillAmount >= 1)
         {
-            if (hitObj.name.Contains("Right"))
-            {
-                vp360.SwpVideoClip(true);
-            }
-            else if (hitObj.name.Contains("Left"))
-            {
-                vp360.SwpVideoClip(false);
-            }
-            else
-            {
-                vp360.SetVideoPlay(hitObj.transform.GetSiblingIndex());
-            }
-            curGazeTime = 0;
+            vp360.SetVideoPlay(curHitObj.transform.GetSiblingIndex());
         }
     }
 }
