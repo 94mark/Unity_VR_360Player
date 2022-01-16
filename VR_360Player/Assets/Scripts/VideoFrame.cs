@@ -39,4 +39,20 @@ public class VideoFrame : MonoBehaviour
             }
         }
     }
+
+    //GazePointerCtril에서 영상 재생을 컨트롤하기 위한 함수
+    public void CheckVidedFrame(bool Checker)
+    {
+        if(Checker)
+        {
+            if(!vp.isPlaying)
+            {
+                vp.Play();
+            }
+        }
+        else
+        {
+            vp.Stop();
+        }
+    }
 }
