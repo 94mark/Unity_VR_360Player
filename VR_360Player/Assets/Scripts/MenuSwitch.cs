@@ -29,7 +29,7 @@ public class MenuSwitch : MonoBehaviour
         }
         else
         {
-            videoFrameMenu.SetActive)(false); //메뉴 비활성화
+            videoFrameMenu.SetActive(false); //메뉴 비활성화
         }
     }
 }
