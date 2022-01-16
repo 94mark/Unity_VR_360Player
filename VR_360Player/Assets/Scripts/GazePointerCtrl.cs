@@ -90,9 +90,9 @@ public class GazePointerCtrl : MonoBehaviour
     void HitObjChecker(GameObject hitObj, bool isActive)
     {
         //hit가 비디오 플레이어 컴포넌트를 갖고 있는지 확인한다
-        if(hitObj.GetComponent<VideoPlayer>())
+        if (hitObj.GetComponent<VideoPlayer>())
         {
-            if(isActive)
+            if (isActive)
             {
                 hitObj.GetComponent<VideoFrame>().CheckVideoFrame(true);
             }
@@ -107,11 +107,11 @@ public class GazePointerCtrl : MonoBehaviour
             //비디오 플레이어가 없는 Mesh_Collider 오브젝트의 이름에 따라 이전/다음 영상으로 재생
             if (hitObj.name.Contains("Right"))
             {
-                vp360.SwpVideoClip(true); //다음 영상
+                vp360.SwapVideoClip(true); //다음 영상
             }
             else if (hitObj.name.Contains("Left"))
             {
-                vp360.SwpVideoClip(false); //이전 영상
+                vp360.SwapVideoClip(false); //이전 영상
             }
             else
             {
@@ -120,4 +120,5 @@ public class GazePointerCtrl : MonoBehaviour
             }
             curGazeTime = 0; //누적 시간을 초기화해 코드가 반복해서 불리는 것을 방지
         }
+    }
 }
